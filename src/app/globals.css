@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --base: #F5EFE0;
+  --terracotta: #C4845A;
+  --gold: #C9A96E;
+  --text-primary: #4A3828;
+  --text-secondary: #8A7B6E;
+  --blue-detail: #B8CDD8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--text-primary);
+  background-color: var(--base);
+  /* Textura acuarela */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(201, 169, 110, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 85% 30%, rgba(196, 132, 90, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(232, 213, 176, 0.1) 0%, transparent 50%),
+    linear-gradient(120deg, rgba(245, 239, 224, 0.4) 0%, rgba(212, 184, 150, 0.1) 100%);
+  background-attachment: fixed;
+}
+
+/* Vignette para imágenes */
+.img-vignette {
+  mask-image: radial-gradient(circle, black 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle, black 60%, transparent 100%);
+}
+
+/* Ocultar barra de scroll para estetica limpia pero permitiendo scroll */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--base); 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #E8D5B0; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold); 
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
