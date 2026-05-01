@@ -29,15 +29,11 @@ export async function POST(req: Request) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
-    // Preparar la fila: Nombre, Acompañante, Servicio de bus, Alergias/Menu especial, Alguna otra, Mensaje
-    let acompananteText = 'No';
-    if (plusOne === 'yes') {
-      acompananteText = plusOneName && plusOneName.trim() !== '' ? plusOneName : 'Sí';
-    }
-
+    // Preparar la fila: Nombre, Acompañante, Nombre Acomp., Servicio de bus, Alergias/Menu especial, Alguna otra, Mensaje
     const row = [
       name || '',
-      acompananteText,
+      plusOne === 'yes' ? 'Sí' : 'No',
+      plusOne === 'yes' ? (plusOneName || '') : '',
       bus === 'yes' ? 'Sí' : 'No',
       Array.isArray(allergies) && allergies.length > 0 ? allergies.join(', ') : 'Ninguna',
       otherAllergies || '',
@@ -47,7 +43,7 @@ export async function POST(req: Request) {
     // Insertar en la primera hoja
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
-      range: 'A:F',
+      range: 'A:G',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [row],
