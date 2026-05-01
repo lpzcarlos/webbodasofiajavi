@@ -19,12 +19,42 @@ const guests = [
 export default function RsvpForm() {
   const [comesWithPlusOne, setComesWithPlusOne] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Aquí se debería conectar a backend/Formspree/n8n
-    alert("¡Gracias por confirmar tu asistencia! Hemos recibido tu respuesta.");
-    e.currentTarget.reset();
-    setComesWithPlusOne(false);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    // Obtener las alergias (son múltiples checkboxes)
+    const allergies = formData.getAll('allergies');
+    
+    const data = {
+      name: formData.get('guestName'),
+      plusOne: formData.get('plusOne'),
+      plusOneName: formData.get('plusOneName'),
+      bus: formData.get('bus'),
+      allergies: allergies,
+      otherAllergies: formData.get('otherAllergies'),
+      message: formData.get('message'),
+    };
+
+    try {
+      const res = await fetch('/api/rsvp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        alert("¡Gracias por confirmar tu asistencia! Hemos recibido tu respuesta.");
+        form.reset();
+        setComesWithPlusOne(false);
+      } else {
+        alert("Hubo un error guardando tus datos. Por favor, inténtalo de nuevo.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error de conexión. Revisa tu internet e inténtalo de nuevo.");
+    }
   };
 
   return (
@@ -67,38 +97,32 @@ export default function RsvpForm() {
           <label className="font-sans text-sm tracking-widest uppercase text-text-secondary">
             ¿Vienes acompañado/a?
           </label>
-          <div className="flex gap-8">
-            <label className="flex items-center gap-3 cursor-pointer group">
-              <div className="relative flex items-center justify-center">
-                <input 
-                  type="radio" 
-                  name="plusOne" 
-                  value="yes" 
-                  className="peer sr-only"
-                  onChange={() => setComesWithPlusOne(true)}
-                />
-                <div className="w-5 h-5 rounded-full border border-text-secondary group-hover:border-terracotta peer-checked:border-terracotta transition-colors flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 rounded-full bg-terracotta scale-0 peer-checked:scale-100 transition-transform"></div>
-                </div>
+          <div className="flex gap-4">
+            <label className="flex-1 cursor-pointer">
+              <input 
+                type="radio" 
+                name="plusOne" 
+                value="yes" 
+                className="peer sr-only"
+                onChange={() => setComesWithPlusOne(true)}
+              />
+              <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta peer-checked:text-[#F5EFE0] text-text-primary transition-all duration-300">
+                <span className="font-serif text-base">Sí</span>
               </div>
-              <span className="font-serif text-lg text-text-primary">Sí</span>
             </label>
             
-            <label className="flex items-center gap-3 cursor-pointer group">
-              <div className="relative flex items-center justify-center">
-                <input 
-                  type="radio" 
-                  name="plusOne" 
-                  value="no" 
-                  defaultChecked
-                  className="peer sr-only"
-                  onChange={() => setComesWithPlusOne(false)}
-                />
-                <div className="w-5 h-5 rounded-full border border-text-secondary group-hover:border-terracotta peer-checked:border-terracotta transition-colors flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 rounded-full bg-terracotta scale-0 peer-checked:scale-100 transition-transform"></div>
-                </div>
+            <label className="flex-1 cursor-pointer">
+              <input 
+                type="radio" 
+                name="plusOne" 
+                value="no" 
+                defaultChecked
+                className="peer sr-only"
+                onChange={() => setComesWithPlusOne(false)}
+              />
+              <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta peer-checked:text-[#F5EFE0] text-text-primary transition-all duration-300">
+                <span className="font-serif text-base">No</span>
               </div>
-              <span className="font-serif text-lg text-text-primary">No</span>
             </label>
           </div>
         </div>
@@ -123,52 +147,65 @@ export default function RsvpForm() {
           <label className="font-sans text-sm tracking-widest uppercase text-text-secondary">
             ¿Necesitas servicio de autobús?
           </label>
-          <div className="flex gap-8">
-            <label className="flex items-center gap-3 cursor-pointer group">
-              <div className="relative flex items-center justify-center">
-                <input 
-                  type="radio" 
-                  name="bus" 
-                  value="yes" 
-                  className="peer sr-only"
-                />
-                <div className="w-5 h-5 rounded-full border border-text-secondary group-hover:border-terracotta peer-checked:border-terracotta transition-colors flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 rounded-full bg-terracotta scale-0 peer-checked:scale-100 transition-transform"></div>
-                </div>
+          <div className="flex gap-4">
+            <label className="flex-1 cursor-pointer">
+              <input 
+                type="radio" 
+                name="bus" 
+                value="yes" 
+                className="peer sr-only"
+              />
+              <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta peer-checked:text-[#F5EFE0] text-text-primary transition-all duration-300">
+                <span className="font-serif text-base">Sí</span>
               </div>
-              <span className="font-serif text-lg text-text-primary">Sí</span>
             </label>
             
-            <label className="flex items-center gap-3 cursor-pointer group">
-              <div className="relative flex items-center justify-center">
-                <input 
-                  type="radio" 
-                  name="bus" 
-                  value="no" 
-                  defaultChecked
-                  className="peer sr-only"
-                />
-                <div className="w-5 h-5 rounded-full border border-text-secondary group-hover:border-terracotta peer-checked:border-terracotta transition-colors flex items-center justify-center">
-                  <div className="w-2.5 h-2.5 rounded-full bg-terracotta scale-0 peer-checked:scale-100 transition-transform"></div>
-                </div>
+            <label className="flex-1 cursor-pointer">
+              <input 
+                type="radio" 
+                name="bus" 
+                value="no" 
+                defaultChecked
+                className="peer sr-only"
+              />
+              <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta peer-checked:text-[#F5EFE0] text-text-primary transition-all duration-300">
+                <span className="font-serif text-base">No</span>
               </div>
-              <span className="font-serif text-lg text-text-primary">No</span>
             </label>
           </div>
         </div>
 
         {/* 5. Alergias */}
-        <div className="flex flex-col gap-2">
-          <label htmlFor="allergies" className="font-sans text-sm tracking-widest uppercase text-text-secondary">
-            Alergias o intolerancias
+        <div className="flex flex-col gap-4">
+          <label className="font-sans text-sm tracking-widest uppercase text-text-secondary">
+            Alergias o menú especial
           </label>
-          <textarea 
-            id="allergies" 
-            name="allergies" 
-            rows={2}
-            placeholder="Escríbenos si tienes alguna alergia o intolerancia alimentaria"
-            className="w-full bg-transparent border-b border-text-secondary/30 py-3 text-text-primary focus:outline-none focus:border-terracotta transition-colors font-serif text-lg placeholder:text-text-secondary/50 resize-none"
-          ></textarea>
+          <div className="grid grid-cols-2 gap-4">
+            {["Gluten", "Lácteos", "Frutos secos", "Vegana"].map((allergy) => (
+              <label key={allergy} className="flex items-center gap-3 cursor-pointer group">
+                <div className="relative flex items-center justify-center">
+                  <input 
+                    type="checkbox" 
+                    name="allergies" 
+                    value={allergy} 
+                    className="peer sr-only"
+                  />
+                  <div className="w-5 h-5 rounded border border-text-secondary group-hover:border-terracotta peer-checked:border-terracotta peer-checked:bg-terracotta transition-colors flex items-center justify-center">
+                    <svg className="w-3.5 h-3.5 text-[#F5EFE0] scale-0 peer-checked:scale-100 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <span className="font-serif text-lg text-text-primary">{allergy}</span>
+              </label>
+            ))}
+          </div>
+          <input 
+            type="text" 
+            name="otherAllergies" 
+            placeholder="¿Alguna otra? Escríbela aquí..."
+            className="w-full bg-transparent border-b border-text-secondary/30 py-3 text-text-primary focus:outline-none focus:border-terracotta transition-colors font-serif text-lg placeholder:text-text-secondary/50 mt-2"
+          />
         </div>
 
         {/* 6. Mensaje */}

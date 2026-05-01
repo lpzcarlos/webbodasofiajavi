@@ -8,7 +8,7 @@ export default function EnvelopeIntro({ children }: { children: React.ReactNode 
   if (phase === 'done') return <>{children}</>
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
+    <div className="relative w-full h-screen overflow-hidden bg-white">
 
       {/* Landing detrás — fade in mientras el video desaparece */}
       <motion.div
@@ -22,7 +22,7 @@ export default function EnvelopeIntro({ children }: { children: React.ReactNode 
 
       {/* Video a pantalla completa */}
       <motion.div
-        className="absolute inset-0 z-10 bg-black"
+        className="absolute inset-0 z-10 bg-white"
         animate={phase === 'fading' ? { opacity: 0 } : { opacity: 1 }}
         transition={{ duration: 1.5, ease: 'easeInOut' }}
         onAnimationComplete={() => {
@@ -30,21 +30,14 @@ export default function EnvelopeIntro({ children }: { children: React.ReactNode 
         }}
       >
         <video
-          src="/videocarta.mp4"
-          className="w-full h-full object-cover object-center"
+          src="/videoanimacion.mp4"
+          className="w-full h-full object-cover object-center bg-white"
           autoPlay
           muted
           playsInline
           onEnded={() => setPhase('fading')}
         />
-        
-        {/* Botón para saltar la intro por si el usuario tiene prisa */}
-        <button 
-          onClick={() => setPhase('fading')}
-          className="absolute bottom-8 right-8 z-20 text-white/50 text-xs md:text-sm font-sans tracking-widest hover:text-white transition-colors uppercase"
-        >
-          Saltar intro &rarr;
-        </button>
+
       </motion.div>
 
     </div>
