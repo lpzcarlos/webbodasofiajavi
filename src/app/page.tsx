@@ -1,3 +1,4 @@
+import EnvelopeIntro from "@/components/EnvelopeIntro";
 import Hero from "@/components/Hero";
 import Countdown from "@/components/Countdown";
 import Ceremony from "@/components/Ceremony";
@@ -10,25 +11,28 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden">
-      <Hero />
-      <div className="relative">
-        <Countdown />
-        <Divider />
-        <Ceremony />
-        <Divider />
-        <Banquet />
-        <Divider />
-        <Itinerary />
-        <Divider />
-        <RsvpForm />
-        <Divider />
-        <GiftRegistry />
-        <Divider />
-        <Music />
-        <Footer />
-      </div>
-    </main>
+    <>
+      <EnvelopeIntro />
+      <main className="min-h-screen overflow-hidden">
+        <Hero />
+        <div className="relative">
+          <Countdown />
+          <Divider />
+          <Ceremony />
+          <Divider />
+          <Banquet />
+          <Divider />
+          <Itinerary />
+          <Divider />
+          <RsvpForm />
+          <Divider />
+          <GiftRegistry />
+          <Divider />
+          <Music />
+          <Footer />
+        </div>
+      </main>
+    </>
   );
 }
 

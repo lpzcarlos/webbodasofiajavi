@@ -35,10 +35,15 @@ export default function Countdown() {
 
   return (
     <section className="py-20 px-4 w-full flex flex-col items-center justify-center">
-      <h2 className="font-serif italic text-text-secondary text-2xl mb-12">
-        Faltan...
-      </h2>
-      
+      <div className="text-center mb-12">
+        <h2 className="font-serif text-5xl md:text-6xl text-text-primary font-light mb-8">
+          3 &middot; Octubre &middot; 2026
+        </h2>
+        <h3 className="font-serif italic text-text-secondary text-2xl">
+          Faltan...
+        </h3>
+      </div>
+
       <div className="flex items-center justify-center gap-4 md:gap-8 max-w-3xl w-full">
         <TimeUnit value={timeLeft.days} label="Días" />
         <Separator />

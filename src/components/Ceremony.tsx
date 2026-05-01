@@ -7,12 +7,11 @@ export default function Ceremony() {
         La Ceremonia
       </h2>
       
-      <div className="relative w-full max-w-2xl aspect-[4/3] mb-12 rounded-lg overflow-hidden img-vignette shadow-watercolor">
-        <Image
+      <div className="relative w-full max-w-2xl mb-12 rounded-lg overflow-hidden img-vignette shadow-watercolor">
+        <img
           src="/iglesia.png"
           alt="Iglesia de San Nicolás, Guadalajara"
-          fill
-          className="object-cover"
+          className="w-full h-auto block"
         />
       </div>
       

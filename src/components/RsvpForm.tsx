@@ -51,9 +51,10 @@ export default function RsvpForm() {
             id="guestName" 
             name="guestName" 
             required
+            defaultValue=""
             className="w-full bg-transparent border-b border-text-secondary/30 py-3 text-text-primary focus:outline-none focus:border-terracotta transition-colors font-serif text-lg appearance-none cursor-pointer"
           >
-            <option value="" disabled selected>Selecciona tu nombre...</option>
+            <option value="" disabled>Selecciona tu nombre...</option>
             {/* Aquí se deben añadir los nombres reales en producción */}
             {guests.map((name, i) => (
               <option key={i} value={name}>{name}</option>
