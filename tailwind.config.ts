@@ -9,12 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        base: "#F5EFE0",
+        base: "#000000",
         terracotta: "#C4845A",
         gold: "#C9A96E",
         "text-primary": "#4A3828",
         "text-secondary": "#8A7B6E",
-        "blue-detail": "#B8CDD8",
+        "blue-detail": "#000000",
       },
       fontFamily: {
         serif: ["var(--font-cormorant)"],

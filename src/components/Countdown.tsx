@@ -36,9 +36,7 @@ export default function Countdown() {
   return (
     <section className="py-20 px-4 w-full flex flex-col items-center justify-center">
       <div className="text-center mb-12">
-        <h2 className="font-serif text-5xl md:text-6xl text-text-primary font-light mb-8">
-          3 &middot; Octubre &middot; 2026
-        </h2>
+
         <h3 className="font-serif italic text-text-secondary text-2xl">
           Faltan...
         </h3>

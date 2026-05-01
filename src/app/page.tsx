@@ -11,38 +11,39 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
-      <EnvelopeIntro />
+    <EnvelopeIntro>
       <main className="min-h-screen overflow-hidden">
         <Hero />
         <div className="relative">
           <Countdown />
-          <Divider />
+          <Divider variant={1} />
           <Ceremony />
-          <Divider />
+          <Divider variant={2} />
           <Banquet />
-          <Divider />
+          <Divider variant={1} />
           <Itinerary />
-          <Divider />
+          <Divider variant={2} />
           <RsvpForm />
-          <Divider />
+          <Divider variant={1} />
           <GiftRegistry />
-          <Divider />
+          <Divider variant={2} />
           <Music />
           <Footer />
         </div>
       </main>
-    </>
+    </EnvelopeIntro>
   );
 }
 
-function Divider() {
+function Divider({ variant }: { variant: 1 | 2 }) {
+  const src = variant === 1 ? "/separador1.png" : "/separador2.png";
   return (
-    <div className="w-full flex justify-center py-8 opacity-40">
-      <svg width="120" height="20" viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 10C30 20 40 0 60 10C80 20 90 0 110 10" stroke="#C9A96E" strokeWidth="1" strokeLinecap="round"/>
-        <circle cx="60" cy="10" r="3" fill="#C4845A"/>
-      </svg>
+    <div className="w-full flex justify-center py-12">
+      <img 
+        src={src} 
+        alt="Separador decorativo" 
+        className="w-[150px] md:w-[200px] h-auto object-contain opacity-80" 
+      />
     </div>
   );
 }

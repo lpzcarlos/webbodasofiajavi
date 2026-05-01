@@ -29,12 +29,15 @@ export default function Hero() {
 
       {/* Content */}
       <div
-        className={`relative z-10 flex flex-col items-center text-center px-4 mt-[60vh] md:mt-[65vh] transition-all duration-1000 transform ${mounted ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+        className={`relative z-10 flex flex-col items-center text-center px-4 mt-[65vh] md:mt-[65vh] transition-all duration-1000 transform ${mounted ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
       >
-        <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-text-primary font-light tracking-tight mb-8">
+        <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-text-primary font-light tracking-tight mb-4">
           Sofía <span className="font-italic">&</span> Javier
         </h1>
+        <h2 className="font-serif text-4xl md:text-6xl text-text-primary font-light mb-6">
+          3 &middot; Octubre &middot; 2026
+        </h2>
       </div>
 
       {/* Scroll indicator */}

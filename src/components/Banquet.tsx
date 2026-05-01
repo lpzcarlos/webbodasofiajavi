@@ -24,7 +24,7 @@ export default function Banquet() {
           La Quinta del Jarama
         </h3>
 
-        <p className="font-sans text-text-secondary text-sm md:text-base tracking-widest max-w-md">
+        <p className="font-serif text-text-primary text-xl md:text-2xl tracking-wide max-w-md">
           Sigüenza, Guadalajara
         </p>
 

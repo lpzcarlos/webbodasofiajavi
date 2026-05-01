@@ -11,7 +11,7 @@ const cormorant = Cormorant_Garamond({
 
 const lato = Lato({ 
   subsets: ["latin"], 
-  weight: ["300", "400"],
+  weight: ["300", "400", "700", "900"],
   variable: '--font-lato'
 });
 
