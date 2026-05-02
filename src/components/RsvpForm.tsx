@@ -226,7 +226,7 @@ export default function RsvpForm() {
         <div className="mt-8 flex justify-center">
           <button 
             type="submit"
-            className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-terracotta hover:bg-gold text-base transition-colors duration-300 font-sans tracking-widest text-sm uppercase text-[#F5EFE0] w-full md:w-auto"
+            className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-terracotta hover:bg-gold text-base transition-colors duration-300 font-sans tracking-widest text-sm uppercase text-white font-medium w-full md:w-auto"
           >
             Confirmar asistencia
           </button>

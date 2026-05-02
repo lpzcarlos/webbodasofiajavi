@@ -36,7 +36,7 @@ export default function Banquet() {
           href="https://maps.google.com/?q=La+Quinta+del+Jarama+Sigüenza"
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-flex items-center justify-center px-8 py-3 rounded-full bg-terracotta hover:bg-gold text-base transition-colors duration-300 font-sans tracking-widest text-sm uppercase"
+          className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-terracotta hover:bg-gold text-base transition-colors duration-300 font-sans tracking-widest text-sm uppercase text-white font-medium w-full md:w-auto"
         >
           Cómo llegar &rarr;
         </a>
