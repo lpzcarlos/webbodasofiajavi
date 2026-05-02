@@ -6,10 +6,10 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { name, plusOne, plusOneName, bus, allergies, otherAllergies, message } = body;
 
-    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
+    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL?.trim();
     // En las variables de entorno, los saltos de línea a veces se escapan como "\\n", esto lo arregla
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
-    const sheetId = process.env.GOOGLE_SHEET_ID;
+    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.trim().replace(/\\n/g, '\n');
+    const sheetId = process.env.GOOGLE_SHEET_ID?.trim();
 
     if (!clientEmail || !privateKey || !sheetId) {
       console.error("Faltan variables de entorno para Google Sheets.");
