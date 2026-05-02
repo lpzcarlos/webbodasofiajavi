@@ -106,8 +106,8 @@ export default function RsvpForm() {
                 className="peer sr-only"
                 onChange={() => setComesWithPlusOne(true)}
               />
-              <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta peer-checked:text-[#F5EFE0] text-text-primary transition-all duration-300">
-                <span className="font-serif text-base">Sí</span>
+              <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta transition-all duration-300">
+                <span className="font-serif text-base" style={{ color: '#4A3828' }}>Sí</span>
               </div>
             </label>
             
@@ -120,8 +120,8 @@ export default function RsvpForm() {
                 className="peer sr-only"
                 onChange={() => setComesWithPlusOne(false)}
               />
-              <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta peer-checked:text-[#F5EFE0] text-text-primary transition-all duration-300">
-                <span className="font-serif text-base">No</span>
+              <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta transition-all duration-300">
+                <span className="font-serif text-base" style={{ color: '#4A3828' }}>No</span>
               </div>
             </label>
           </div>
@@ -155,8 +155,8 @@ export default function RsvpForm() {
                 value="yes" 
                 className="peer sr-only"
               />
-              <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta peer-checked:text-[#F5EFE0] text-text-primary transition-all duration-300">
-                <span className="font-serif text-base">Sí</span>
+              <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta transition-all duration-300">
+                <span className="font-serif text-base" style={{ color: '#4A3828' }}>Sí</span>
               </div>
             </label>
             
@@ -168,8 +168,8 @@ export default function RsvpForm() {
                 defaultChecked
                 className="peer sr-only"
               />
-              <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta peer-checked:text-[#F5EFE0] text-text-primary transition-all duration-300">
-                <span className="font-serif text-base">No</span>
+              <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta transition-all duration-300">
+                <span className="font-serif text-base" style={{ color: '#4A3828' }}>No</span>
               </div>
             </label>
           </div>
