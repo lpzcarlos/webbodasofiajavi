@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useRef } from 'react'
 
 type Phase = 'idle' | 'playing' | 'fading' | 'done'
@@ -11,22 +11,16 @@ export default function EnvelopeIntro({ children }: { children: React.ReactNode 
 
   const handleClick = () => {
     if (phase !== 'idle') return
-    // Señal al MusicPlayer (montado en layout) para que arranque desde el segundo 3
     window.dispatchEvent(new Event('startMusic'))
-    // Arrancar vídeo
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => { })
-    }
+    videoRef.current?.play().catch(() => {})
     setPhase('playing')
   }
 
   if (phase === 'done') return <>{children}</>
 
   return (
-    <div
-      className="relative w-full h-screen overflow-hidden bg-white cursor-pointer"
-      onClick={handleClick}
-    >
+    <div className="relative w-full h-screen overflow-hidden bg-[#F5EFE0]">
+
       {/* Landing detrás */}
       <motion.div
         className="absolute inset-0 z-0"
@@ -37,9 +31,9 @@ export default function EnvelopeIntro({ children }: { children: React.ReactNode 
         {children}
       </motion.div>
 
-      {/* Vídeo — NO tiene autoPlay, arranca solo al hacer clic */}
+      {/* Vídeo con poster — sin autoPlay, el sobre se muestra estático */}
       <motion.div
-        className="absolute inset-0 z-10 bg-white"
+        className="absolute inset-0 z-10"
         animate={phase === 'fading' ? { opacity: 0 } : { opacity: 1 }}
         transition={{ duration: 1.5, ease: 'easeInOut' }}
         onAnimationComplete={() => { if (phase === 'fading') setPhase('done') }}
@@ -47,23 +41,44 @@ export default function EnvelopeIntro({ children }: { children: React.ReactNode 
         <video
           ref={videoRef}
           src="/videoanimacion.mp4"
-          className="w-full h-full object-cover object-center bg-white"
+          className="w-full h-full object-cover object-center"
           muted
           playsInline
           preload="auto"
           onEnded={() => setPhase('fading')}
         />
 
-        {/* Texto "Pincha para abrir" — color del resto de la web, desaparece al clicar */}
-        <motion.p
-          className="absolute top-20 w-full text-center font-sans text-xs tracking-[0.4em] uppercase"
-          style={{ color: '#4A3828' }}
-          animate={{ opacity: phase === 'idle' ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          Pincha para abrir
-        </motion.p>
+        {/* Imagen del sobre — visible hasta que arranca el vídeo, con tamaño controlado */}
+        {phase === 'idle' && (
+          <div className="absolute inset-0 flex items-center justify-center bg-[#F5EFE0]">
+            <img
+              src="/sobre.png"
+              alt="Sobre de boda"
+              className="w-full h-full object-contain md:max-w-3xl md:h-auto"
+            />
+          </div>
+        )}
       </motion.div>
+
+      {/* Capa transparente + texto — desaparece al pinchar */}
+      <AnimatePresence>
+        {phase === 'idle' && (
+          <motion.div
+            key="overlay"
+            className="absolute inset-0 z-20 flex items-end justify-center pb-10 md:pb-16 cursor-pointer"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            onClick={handleClick}
+          >
+            <p
+              className="font-sans text-xs tracking-[0.4em] uppercase"
+              style={{ color: '#4A3828' }}
+            >
+              Pincha para abrir
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   )
