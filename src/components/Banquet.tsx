@@ -13,7 +13,7 @@ export default function Banquet() {
       */}
       <div className="relative w-full max-w-2xl mb-12 rounded-lg overflow-hidden img-vignette shadow-watercolor">
         <img
-          src="/banquete.png"
+          src="/banquete.jpeg"
           alt="Banquete en La Quinta del Jarama"
           className="w-full h-auto block"
         />
@@ -21,7 +21,7 @@ export default function Banquet() {
 
       <div className="flex flex-col items-center space-y-4">
         <h3 className="font-serif text-4xl text-text-primary">
-          La Quinta del Jarama
+          Monte de Cutamilla
         </h3>
 
         <p className="font-serif text-text-primary text-xl md:text-2xl tracking-wide max-w-md">
@@ -33,7 +33,7 @@ export default function Banquet() {
         </p>
 
         <a
-          href="https://maps.google.com/?q=La+Quinta+del+Jarama+Sigüenza"
+          href="https://maps.google.com/?q=Monte+de+Cutamilla"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-terracotta hover:bg-gold text-base transition-colors duration-300 font-sans tracking-widest text-sm uppercase text-white font-medium w-full md:w-auto"
