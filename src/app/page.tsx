@@ -6,7 +6,6 @@ import Banquet from "@/components/Banquet";
 import Itinerary from "@/components/Itinerary";
 import RsvpForm from "@/components/RsvpForm";
 import GiftRegistry from "@/components/GiftRegistry";
-import Music from "@/components/Music";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -27,7 +26,6 @@ export default function Home() {
           <Divider variant={1} />
           <GiftRegistry />
           <Divider variant={2} />
-          <Music />
           <Footer />
         </div>
       </main>

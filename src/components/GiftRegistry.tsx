@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function GiftRegistry() {
   const [copied, setCopied] = useState(false);
-  const accountNumber = "ES12 3456 7890 1234 5678 9012";
+  const accountNumber = "ES52 0182 5322 2300 0404 4640";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(accountNumber);

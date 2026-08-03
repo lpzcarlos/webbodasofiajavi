@@ -20,7 +20,7 @@ export default function Hero() {
           alt="Sofía y Javier en la Torre Eiffel"
           fill
           priority
-          className="object-cover object-center md:object-bottom"
+          className="object-cover object-center"
         />
         {/* Subtle cream overlay */}
         <div className="absolute inset-0 bg-[#F5EFE0]/20 mix-blend-overlay"></div>

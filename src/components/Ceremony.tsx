@@ -25,7 +25,7 @@ export default function Ceremony() {
         </p>
 
         <p className="font-serif text-3xl text-terracotta font-medium my-4">
-          12:00 h
+          13:00 h
         </p>
 
         <a

@@ -2,20 +2,6 @@
 
 import { useState } from "react";
 
-// Lista de nombres inventados de invitados
-const guests = [
-  "Alejandro Ruiz",
-  "Valentina Torres",
-  "Mateo García",
-  "Isabella López",
-  "Lucas Martínez",
-  "Camila Rodríguez",
-  "Martín Fernández",
-  "Sofía Pérez",
-  "Hugo Sánchez",
-  "Daniela Gómez"
-];
-
 export default function RsvpForm() {
   const [comesWithPlusOne, setComesWithPlusOne] = useState(false);
 
@@ -23,10 +9,10 @@ export default function RsvpForm() {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
-    
+
     // Obtener las alergias (son múltiples checkboxes)
     const allergies = formData.getAll('allergies');
-    
+
     const data = {
       name: formData.get('guestName'),
       plusOne: formData.get('plusOne'),
@@ -68,28 +54,23 @@ export default function RsvpForm() {
         </p>
       </div>
 
-      <form 
+      <form
         onSubmit={handleSubmit}
         className="w-full max-w-xl flex flex-col gap-8 bg-white/20 p-8 md:p-12 rounded-2xl backdrop-blur-sm shadow-watercolor"
       >
         {/* 1. Nombre del invitado */}
         <div className="flex flex-col gap-2">
           <label htmlFor="guestName" className="font-sans text-sm tracking-widest uppercase text-text-secondary">
-            Tu Nombre
+            Tu Nombre y Apellidos
           </label>
-          <select 
-            id="guestName" 
-            name="guestName" 
+          <input
+            type="text"
+            id="guestName"
+            name="guestName"
             required
-            defaultValue=""
-            className="w-full bg-transparent border-b border-text-secondary/30 py-3 text-text-primary focus:outline-none focus:border-terracotta transition-colors font-serif text-lg appearance-none cursor-pointer"
-          >
-            <option value="" disabled>Selecciona tu nombre...</option>
-            {/* Aquí se deben añadir los nombres reales en producción */}
-            {guests.map((name, i) => (
-              <option key={i} value={name}>{name}</option>
-            ))}
-          </select>
+            placeholder="Escribe tu nombre y apellidos"
+            className="w-full bg-transparent border-b border-text-secondary/30 py-3 text-text-primary focus:outline-none focus:border-terracotta transition-colors font-serif text-lg placeholder:text-text-secondary/50"
+          />
         </div>
 
         {/* 2. ¿Vienes acompañado/a? */}
@@ -99,10 +80,10 @@ export default function RsvpForm() {
           </label>
           <div className="flex gap-4">
             <label className="flex-1 cursor-pointer">
-              <input 
-                type="radio" 
-                name="plusOne" 
-                value="yes" 
+              <input
+                type="radio"
+                name="plusOne"
+                value="yes"
                 className="peer sr-only"
                 onChange={() => setComesWithPlusOne(true)}
               />
@@ -110,12 +91,12 @@ export default function RsvpForm() {
                 <span className="font-serif text-base" style={{ color: '#4A3828' }}>Sí</span>
               </div>
             </label>
-            
+
             <label className="flex-1 cursor-pointer">
-              <input 
-                type="radio" 
-                name="plusOne" 
-                value="no" 
+              <input
+                type="radio"
+                name="plusOne"
+                value="no"
                 defaultChecked
                 className="peer sr-only"
                 onChange={() => setComesWithPlusOne(false)}
@@ -130,12 +111,12 @@ export default function RsvpForm() {
         {/* 3. Nombre del acompañante (Condicional) */}
         <div className={`flex flex-col gap-2 overflow-hidden transition-all duration-500 ease-in-out ${comesWithPlusOne ? "max-h-24 opacity-100" : "max-h-0 opacity-0"}`}>
           <label htmlFor="plusOneName" className="font-sans text-sm tracking-widest uppercase text-text-secondary">
-            Nombre del acompañante
+            Nombre y apellidos del acompañante
           </label>
-          <input 
-            type="text" 
-            id="plusOneName" 
-            name="plusOneName" 
+          <input
+            type="text"
+            id="plusOneName"
+            name="plusOneName"
             placeholder="Escribe su nombre completo"
             required={comesWithPlusOne}
             className="w-full bg-transparent border-b border-text-secondary/30 py-3 text-text-primary focus:outline-none focus:border-terracotta transition-colors font-serif text-lg placeholder:text-text-secondary/50"
@@ -149,22 +130,22 @@ export default function RsvpForm() {
           </label>
           <div className="flex gap-4">
             <label className="flex-1 cursor-pointer">
-              <input 
-                type="radio" 
-                name="bus" 
-                value="yes" 
+              <input
+                type="radio"
+                name="bus"
+                value="yes"
                 className="peer sr-only"
               />
               <div className="text-center py-2 px-4 rounded-xl border border-text-secondary/30 peer-checked:border-terracotta peer-checked:bg-terracotta transition-all duration-300">
                 <span className="font-serif text-base" style={{ color: '#4A3828' }}>Sí</span>
               </div>
             </label>
-            
+
             <label className="flex-1 cursor-pointer">
-              <input 
-                type="radio" 
-                name="bus" 
-                value="no" 
+              <input
+                type="radio"
+                name="bus"
+                value="no"
                 defaultChecked
                 className="peer sr-only"
               />
@@ -172,6 +153,11 @@ export default function RsvpForm() {
                 <span className="font-serif text-base" style={{ color: '#4A3828' }}>No</span>
               </div>
             </label>
+          </div>
+          <div className="mt-2 text-text-secondary font-serif text-base">
+            <p><strong>Servicio de autobús</strong></p>
+            <p>Habrá un autobús de ida desde San Ginés al finalizar la misa y otro de vuelta desde la finca al terminar la celebración.</p>
+            <p className="mt-4">Más adelante confirmaremos los horarios.</p>
           </div>
         </div>
 
@@ -184,10 +170,10 @@ export default function RsvpForm() {
             {["Gluten", "Lácteos", "Frutos secos", "Vegana"].map((allergy) => (
               <label key={allergy} className="flex items-center gap-3 cursor-pointer group">
                 <div className="relative flex items-center justify-center">
-                  <input 
-                    type="checkbox" 
-                    name="allergies" 
-                    value={allergy} 
+                  <input
+                    type="checkbox"
+                    name="allergies"
+                    value={allergy}
                     className="peer sr-only"
                   />
                   <div className="w-5 h-5 rounded border border-text-secondary group-hover:border-terracotta peer-checked:border-terracotta peer-checked:bg-terracotta transition-colors flex items-center justify-center">
@@ -200,9 +186,9 @@ export default function RsvpForm() {
               </label>
             ))}
           </div>
-          <input 
-            type="text" 
-            name="otherAllergies" 
+          <input
+            type="text"
+            name="otherAllergies"
             placeholder="¿Alguna otra? Escríbela aquí..."
             className="w-full bg-transparent border-b border-text-secondary/30 py-3 text-text-primary focus:outline-none focus:border-terracotta transition-colors font-serif text-lg placeholder:text-text-secondary/50 mt-2"
           />
@@ -213,9 +199,9 @@ export default function RsvpForm() {
           <label htmlFor="message" className="font-sans text-sm tracking-widest uppercase text-text-secondary">
             Mensaje para los novios
           </label>
-          <textarea 
-            id="message" 
-            name="message" 
+          <textarea
+            id="message"
+            name="message"
             rows={3}
             placeholder="Si quieres dejarnos unas palabras..."
             className="w-full bg-transparent border-b border-text-secondary/30 py-3 text-text-primary focus:outline-none focus:border-terracotta transition-colors font-serif text-lg placeholder:text-text-secondary/50 resize-none"
@@ -224,7 +210,7 @@ export default function RsvpForm() {
 
         {/* Botón Envío */}
         <div className="mt-8 flex justify-center">
-          <button 
+          <button
             type="submit"
             className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-terracotta hover:bg-gold text-base transition-colors duration-300 font-sans tracking-widest text-sm uppercase text-white font-medium w-full md:w-auto"
           >

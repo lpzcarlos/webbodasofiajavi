@@ -3,11 +3,11 @@
 import { useEffect, useRef } from "react";
 
 const events = [
-  { time: "12:00 h", description: "Ceremonia" },
-  { time: "13:00 h", description: "Aperitivo" },
-  { time: "15:00 h", description: "Banquete" },
+  { time: "13:00 h", description: "Misa" },
+  { time: "15:00 h", description: "Aperitivo" },
+  { time: "17:00 h", description: "Banquete" },
   { time: "19:00 h", description: "¡Empieza la fiesta!" },
-  { time: "00:00 h", description: "Hasta pronto" },
+  { time: "01:00 h", description: "Hasta pronto" },
 ];
 
 export default function Itinerary() {
@@ -37,8 +37,8 @@ export default function Itinerary() {
       <h2 className="font-serif text-5xl md:text-6xl text-text-primary mb-20 font-light text-center">
         El Gran Día
       </h2>
-      
-      <div 
+
+      <div
         ref={containerRef}
         className="relative w-full max-w-lg mx-auto flex flex-col items-center"
       >
@@ -46,8 +46,8 @@ export default function Itinerary() {
         <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gold -translate-x-1/2 opacity-50"></div>
 
         {events.map((item, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="timeline-item relative w-full flex items-center justify-between mb-16 last:mb-0 opacity-0 translate-y-8 transition-all duration-700 ease-out"
             style={{ transitionDelay: `${index * 100}ms` }}
           >
@@ -68,7 +68,7 @@ export default function Itinerary() {
                 </>
               )}
             </div>
-            
+
             {/* Espaciador para el lado opuesto */}
             <div className="w-1/2"></div>
           </div>
