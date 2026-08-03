@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import FadeIn from "./FadeIn";
 
 const events = [
   { time: "13:00 h", description: "Misa" },
@@ -34,9 +35,11 @@ export default function Itinerary() {
 
   return (
     <section className="py-24 px-4 w-full flex flex-col items-center justify-center">
-      <h2 className="font-serif text-5xl md:text-6xl text-text-primary mb-20 font-light text-center">
-        El Gran Día
-      </h2>
+      <FadeIn>
+        <h2 className="font-serif text-5xl md:text-6xl text-text-primary mb-20 font-light text-center">
+          El Gran Día
+        </h2>
+      </FadeIn>
 
       <div
         ref={containerRef}

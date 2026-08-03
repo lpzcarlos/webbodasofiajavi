@@ -7,6 +7,7 @@ import Itinerary from "@/components/Itinerary";
 import RsvpForm from "@/components/RsvpForm";
 import GiftRegistry from "@/components/GiftRegistry";
 import Footer from "@/components/Footer";
+import FadeIn from "@/components/FadeIn";
 
 export default function Home() {
   return (
@@ -16,16 +17,22 @@ export default function Home() {
         <div className="relative">
           <Countdown />
           <Divider variant={1} />
+          
           <Ceremony />
           <Divider variant={2} />
+
           <Banquet />
           <Divider variant={1} />
+
           <Itinerary />
           <Divider variant={2} />
+
           <RsvpForm />
           <Divider variant={1} />
+
           <GiftRegistry />
           <Divider variant={2} />
+
           <Footer />
         </div>
       </main>
@@ -36,12 +43,14 @@ export default function Home() {
 function Divider({ variant }: { variant: 1 | 2 }) {
   const src = variant === 1 ? "/separador1.png" : "/separador2.png";
   return (
-    <div className="w-full flex justify-center py-12">
-      <img 
-        src={src} 
-        alt="Separador decorativo" 
-        className="w-[150px] md:w-[200px] h-auto object-contain opacity-80" 
-      />
-    </div>
+    <FadeIn>
+      <div className="w-full flex justify-center py-12">
+        <img 
+          src={src} 
+          alt="Separador decorativo" 
+          className="w-[150px] md:w-[200px] h-auto object-contain opacity-80" 
+        />
+      </div>
+    </FadeIn>
   );
 }

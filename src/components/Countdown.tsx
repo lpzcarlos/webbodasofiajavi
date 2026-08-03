@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import FadeIn from "./FadeIn";
 
 export default function Countdown() {
   const [timeLeft, setTimeLeft] = useState({
@@ -35,22 +36,25 @@ export default function Countdown() {
 
   return (
     <section className="py-20 px-4 w-full flex flex-col items-center justify-center">
-      <div className="text-center mb-12">
+      <FadeIn>
+        <div className="text-center mb-12">
+          <h3 className="font-serif italic text-text-secondary text-2xl">
+            Faltan...
+          </h3>
+        </div>
+      </FadeIn>
 
-        <h3 className="font-serif italic text-text-secondary text-2xl">
-          Faltan...
-        </h3>
-      </div>
-
-      <div className="flex items-center justify-center gap-4 md:gap-8 max-w-3xl w-full">
-        <TimeUnit value={timeLeft.days} label="Días" />
-        <Separator />
-        <TimeUnit value={timeLeft.hours} label="Horas" />
-        <Separator />
-        <TimeUnit value={timeLeft.minutes} label="Minutos" />
-        <Separator />
-        <TimeUnit value={timeLeft.seconds} label="Segundos" />
-      </div>
+      <FadeIn delay={0.2}>
+        <div className="flex items-center justify-center gap-4 md:gap-8 max-w-3xl w-full">
+          <TimeUnit value={timeLeft.days} label="Días" />
+          <Separator />
+          <TimeUnit value={timeLeft.hours} label="Horas" />
+          <Separator />
+          <TimeUnit value={timeLeft.minutes} label="Minutos" />
+          <Separator />
+          <TimeUnit value={timeLeft.seconds} label="Segundos" />
+        </div>
+      </FadeIn>
     </section>
   );
 }

@@ -1,12 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import FadeIn from "./FadeIn";
 
 export default function RsvpForm() {
   const [comesWithPlusOne, setComesWithPlusOne] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     const form = e.currentTarget;
     const formData = new FormData(form);
 
@@ -40,21 +44,26 @@ export default function RsvpForm() {
     } catch (error) {
       console.error(error);
       alert("Error de conexión. Revisa tu internet e inténtalo de nuevo.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
     <section className="py-24 px-4 w-full flex flex-col items-center justify-center">
-      <div className="max-w-2xl w-full mx-auto text-center mb-16">
-        <h2 className="font-serif text-5xl md:text-6xl text-text-primary mb-6 font-light">
-          ¿Vendrás?
-        </h2>
-        <p className="font-serif italic text-text-secondary text-xl">
-          Confírmanos tu asistencia antes del 1 de septiembre de 2026
-        </p>
-      </div>
+      <FadeIn>
+        <div className="max-w-2xl w-full mx-auto text-center mb-16">
+          <h2 className="font-serif text-5xl md:text-6xl text-text-primary mb-6 font-light">
+            ¿Vendrás?
+          </h2>
+          <p className="font-serif italic text-text-secondary text-xl">
+            Confírmanos tu asistencia antes del 1 de septiembre de 2026
+          </p>
+        </div>
+      </FadeIn>
 
-      <form
+      <FadeIn delay={0.2}>
+        <form
         onSubmit={handleSubmit}
         className="w-full max-w-xl flex flex-col gap-8 bg-white/20 p-8 md:p-12 rounded-2xl backdrop-blur-sm shadow-watercolor"
       >
@@ -109,7 +118,7 @@ export default function RsvpForm() {
         </div>
 
         {/* 3. Nombre del acompañante (Condicional) */}
-        <div className={`flex flex-col gap-2 overflow-hidden transition-all duration-500 ease-in-out ${comesWithPlusOne ? "max-h-24 opacity-100" : "max-h-0 opacity-0"}`}>
+        <div className={`flex flex-col gap-2 overflow-hidden transition-all duration-500 ease-in-out ${comesWithPlusOne ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
           <label htmlFor="plusOneName" className="font-sans text-sm tracking-widest uppercase text-text-secondary">
             Nombre y apellidos del acompañante
           </label>
@@ -212,12 +221,14 @@ export default function RsvpForm() {
         <div className="mt-8 flex justify-center">
           <button
             type="submit"
-            className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-terracotta hover:bg-gold text-base transition-colors duration-300 font-sans tracking-widest text-sm uppercase text-white font-medium w-full md:w-auto"
+            disabled={isSubmitting}
+            className={`inline-flex items-center justify-center px-10 py-4 rounded-full bg-terracotta hover:bg-gold text-base transition-colors duration-300 font-sans tracking-widest text-sm uppercase text-white font-medium w-full md:w-auto ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            Confirmar asistencia
+            {isSubmitting ? 'Enviando...' : 'Confirmar asistencia'}
           </button>
         </div>
-      </form>
+        </form>
+      </FadeIn>
     </section>
   );
 }
