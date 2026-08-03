@@ -30,7 +30,7 @@ export default function GiftRegistry() {
         </div>
       </FadeIn>
 
-      <FadeIn delay={0.4}>
+      <FadeIn delay={0.4} className="w-full flex justify-center">
         <div className="flex flex-col items-center justify-center bg-white/30 backdrop-blur-sm px-4 md:px-16 py-10 rounded-2xl shadow-watercolor border border-white/20 w-full max-w-3xl">
         <Heart className="text-terracotta w-6 h-6 mb-6" strokeWidth={1.5} />
 

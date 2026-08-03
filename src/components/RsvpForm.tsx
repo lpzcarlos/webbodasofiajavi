@@ -62,7 +62,7 @@ export default function RsvpForm() {
         </div>
       </FadeIn>
 
-      <FadeIn delay={0.2}>
+      <FadeIn delay={0.2} className="w-full flex justify-center">
         <form
         onSubmit={handleSubmit}
         className="w-full max-w-xl flex flex-col gap-8 bg-white/20 p-8 md:p-12 rounded-2xl backdrop-blur-sm shadow-watercolor"
