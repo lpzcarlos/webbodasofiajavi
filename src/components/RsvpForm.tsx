@@ -16,6 +16,7 @@ export default function RsvpForm() {
 
     // Obtener las alergias (son múltiples checkboxes)
     const allergies = formData.getAll('allergies');
+    const allergiesPlusOne = formData.getAll('allergiesPlusOne');
 
     const data = {
       name: formData.get('guestName'),
@@ -24,6 +25,8 @@ export default function RsvpForm() {
       bus: formData.get('bus'),
       allergies: allergies,
       otherAllergies: formData.get('otherAllergies'),
+      allergiesPlusOne: allergiesPlusOne,
+      otherAllergiesPlusOne: formData.get('otherAllergiesPlusOne'),
       message: formData.get('message'),
     };
 
@@ -173,7 +176,7 @@ export default function RsvpForm() {
         {/* 5. Alergias */}
         <div className="flex flex-col gap-4">
           <label className="font-sans text-sm tracking-widest uppercase text-text-secondary">
-            Alergias o menú especial
+            Alergias o menú especial (Tuyas)
           </label>
           <div className="grid grid-cols-2 gap-4">
             {["Gluten", "Lácteos", "Frutos secos", "Vegana"].map((allergy) => (
@@ -198,6 +201,39 @@ export default function RsvpForm() {
           <input
             type="text"
             name="otherAllergies"
+            placeholder="¿Alguna otra? Escríbela aquí..."
+            className="w-full bg-transparent border-b border-text-secondary/30 py-3 text-text-primary focus:outline-none focus:border-terracotta transition-colors font-serif text-lg placeholder:text-text-secondary/50 mt-2"
+          />
+        </div>
+
+        {/* 5.5 Alergias Acompañante */}
+        <div className={`flex flex-col gap-4 overflow-hidden transition-all duration-500 ease-in-out ${comesWithPlusOne ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0 m-0"}`}>
+          <label className="font-sans text-sm tracking-widest uppercase text-text-secondary">
+            Alergias o menú especial (Acompañante)
+          </label>
+          <div className="grid grid-cols-2 gap-4">
+            {["Gluten", "Lácteos", "Frutos secos", "Vegana"].map((allergy) => (
+              <label key={`plusone-${allergy}`} className="flex items-center gap-3 cursor-pointer group">
+                <div className="relative flex items-center justify-center">
+                  <input
+                    type="checkbox"
+                    name="allergiesPlusOne"
+                    value={allergy}
+                    className="peer sr-only"
+                  />
+                  <div className="w-5 h-5 rounded border border-text-secondary group-hover:border-terracotta peer-checked:border-terracotta peer-checked:bg-terracotta transition-colors flex items-center justify-center">
+                    <svg className="w-3.5 h-3.5 text-[#F5EFE0] scale-0 peer-checked:scale-100 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <span className="font-serif text-lg text-text-primary">{allergy}</span>
+              </label>
+            ))}
+          </div>
+          <input
+            type="text"
+            name="otherAllergiesPlusOne"
             placeholder="¿Alguna otra? Escríbela aquí..."
             className="w-full bg-transparent border-b border-text-secondary/30 py-3 text-text-primary focus:outline-none focus:border-terracotta transition-colors font-serif text-lg placeholder:text-text-secondary/50 mt-2"
           />

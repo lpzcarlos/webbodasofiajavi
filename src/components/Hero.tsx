@@ -16,7 +16,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/pareja.png"
+          src="/bodahero.jpeg"
           alt="Sofía y Javier en la Torre Eiffel"
           fill
           priority

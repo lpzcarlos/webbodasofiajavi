@@ -5,7 +5,7 @@ import FadeIn from "./FadeIn";
 
 const events = [
   { time: "13:00 h", description: "Misa" },
-  { time: "15:00 h", description: "Aperitivo" },
+  { time: "15:00 h", description: "Cóctel" },
   { time: "17:00 h", description: "Banquete" },
   { time: "19:00 h", description: "¡Empieza la fiesta!" },
   { time: "01:00 h", description: "Hasta pronto" },

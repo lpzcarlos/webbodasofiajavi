@@ -55,6 +55,14 @@ export default function Countdown() {
           <TimeUnit value={timeLeft.seconds} label="Segundos" />
         </div>
       </FadeIn>
+
+      <FadeIn delay={0.4}>
+        <div className="mt-12 max-w-2xl mx-auto text-center px-4">
+          <p className="text-text-primary text-base md:text-lg font-light leading-relaxed">
+            Hay momentos que merecen ser compartidos con las personas que más queremos. Nos haría muchísima ilusión que nos acompañaras en uno de los días más importantes de nuestra vida.
+          </p>
+        </div>
+      </FadeIn>
     </section>
   );
 }

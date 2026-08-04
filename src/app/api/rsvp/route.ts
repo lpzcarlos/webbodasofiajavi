@@ -4,7 +4,7 @@ import { google } from 'googleapis';
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, plusOne, plusOneName, bus, allergies, otherAllergies, message } = body;
+    const { name, plusOne, plusOneName, bus, allergies, otherAllergies, allergiesPlusOne, otherAllergiesPlusOne, message } = body;
 
     const clientEmail = process.env.GOOGLE_CLIENT_EMAIL?.trim();
     // En las variables de entorno, los saltos de línea a veces se escapan como "\\n", esto lo arregla
@@ -29,7 +29,9 @@ export async function POST(req: Request) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
-    // Preparar la fila: Nombre, Acompañante, Nombre Acomp., Servicio de bus, Alergias/Menu especial, Alguna otra, Mensaje
+    // Preparar la fila con las nuevas columnas:
+    // A: Nombre, B: Acompañante, C: Nombre Acomp., D: Servicio de bus,
+    // E: Alergias/Menu especial, F: Alguna otra, G: Alergias/Menu especial Acomp., H: Alguna otra Acomp., I: Mensaje
     const row = [
       name || '',
       plusOne === 'yes' ? 'Sí' : 'No',
@@ -37,13 +39,15 @@ export async function POST(req: Request) {
       bus === 'yes' ? 'Sí' : 'No',
       Array.isArray(allergies) && allergies.length > 0 ? allergies.join(', ') : 'Ninguna',
       otherAllergies || '',
+      plusOne === 'yes' ? (Array.isArray(allergiesPlusOne) && allergiesPlusOne.length > 0 ? allergiesPlusOne.join(', ') : 'Ninguna') : '',
+      plusOne === 'yes' ? (otherAllergiesPlusOne || '') : '',
       message || ''
     ];
 
     // Insertar en la primera hoja
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
-      range: 'A:G',
+      range: 'A:I',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [row],
