@@ -60,7 +60,7 @@ export default function GiftRegistry() {
 
         {/* Nombre del titular */}
         <p className="font-serif text-lg text-text-secondary italic">
-          Sofía Cristobal y Javier Cámara
+          Sofía Cristóbal y Javier Cámara
         </p>
         </div>
       </FadeIn>
